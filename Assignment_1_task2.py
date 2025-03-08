@@ -29,17 +29,21 @@ def draw_particles():
 def update():
     global frozen
     if frozen:
-        return
+        return  # If frozen, stop movement
+
     for p in particles:
-        p.x += p.dx * speed
-        p.y += p.dy * speed
+        p.x += p.dx * speed  # Move horizontally
+        p.y += p.dy * speed  # Move vertically
+
+        # Bounce off window edges
         if p.x <= 0 or p.x >= W_Width:
-            p.dx *= -1
+            p.dx *= -1  # Reverse direction
         if p.y <= 0 or p.y >= W_Height:
-            p.dy *= -1
+            p.dy *= -1  # Reverse direction
+
 
 def keyboardListener(key, x, y):
-    global speed, frozenL
+    global speed, frozen
     if key == b' ':
         frozen = not frozen
     glutPostRedisplay()
@@ -65,7 +69,7 @@ def blink_particles(value):
         for p in particles:
             p.visible = not p.visible
         glutPostRedisplay()
-        glutTimerFunc(500, blink_particles, 0)
+    glutTimerFunc(500, blink_particles, 0)  #glutTimerFunc(milliseconds, callback, value)
 
 def display():
     glClear(GL_COLOR_BUFFER_BIT)

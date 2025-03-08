@@ -96,7 +96,7 @@ def update(value):
         if drop[1] < 0:
             drop[0], drop[1] = random.randint(0, 500), random.randint(300, 500)
     glutPostRedisplay()
-    glutTimerFunc(50, update, 0)  # Timer function to slow down the update cycle
+    glutTimerFunc(50, update, 0)  # Timer function to slow down the update cycle  glutTimerFunc(milliseconds, callback, value)
 
 
 def keyboard(key, x, y):
